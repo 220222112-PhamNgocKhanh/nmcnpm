@@ -125,84 +125,11 @@
             </div>
 
             <!-- Newsletter Section -->
-            <div class="newsletter-section" data-aos="fade-up">
-                <div class="newsletter-container">
-                    <div class="newsletter-content">
-                        <h2><i class="fas fa-envelope"></i> Đăng ký nhận tin</h2>
-                        <p>Nhận thông báo về các sản phẩm mới, khuyến mãi đặc biệt và hướng dẫn chăm sóc thú cưng.</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Địa chỉ email của bạn" required>
-                            <button type="submit" class="subscribe-btn">Đăng ký</button>
-                        </form>
-                    </div>
-                    <div class="newsletter-image">
-                        <img src="images/newsletter-pet.jpg" alt="Đăng ký nhận thông tin">
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 
-    </div> <!-- Footer -->
-    <div id="footer">
-        <div class="section footer-main">
-            <div class="footer-column">
-                <h3>PET SHOP</h3>
-                <p>Cửa hàng thú cưng hàng đầu với các sản phẩm chất lượng cao dành cho thú cưng của bạn. Chúng tôi
-                    cung cấp thực phẩm, phụ kiện và dịch vụ chăm sóc sức khỏe.</p>
-                <div class="social-links">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-column">
-                <h3>Liên kết nhanh</h3>
-                <ul class="footer-links">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="petmart.php">Petmart</a></li>
-                    <li><a href="blog.php">Blog</a></li>
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Categories</h3>
-                <ul class="footer-links">
-                    <li><a href="#" data-category="Dog Food">Food Area</a></li>
-                    <li><a href="#" data-category="Deodorizers">Gromming</a></li>
-                    <li><a href="#" data-category="Odor Control">Accessories</a></li>
-                    <li><a href="#" data-category="Multivitamins">Health</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul class="contact-info">
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Đường Pet, Quận 1, TP.HCM</li>
-                    <li><i class="fas fa-phone"></i> +84 123 456 789</li>
-                    <li><i class="fas fa-envelope"></i> info@petshop.com</li>
-                    <li><i class="fas fa-clock"></i> Thứ 2-7: 8:00 - 20:00</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="footnote">
-            <div class="section">
-                <div class="copyright">
-                    Copyright &copy; 2025 <a href="#">Pet Shop</a>. All rights reserved.
-                </div>
-                <div class="payment-methods">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                    <i class="fab fa-cc-amex"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'footer.php'; ?>
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 

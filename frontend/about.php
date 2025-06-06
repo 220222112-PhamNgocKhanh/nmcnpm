@@ -1,123 +1,227 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pet Shop | About</title>
-    <meta charset="iso-8859-1">
+    <title>About Us | PetGuide</title>
+    <meta charset="utf-8">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/header.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <style>
+      .about-hero {
+        background: linear-gradient(90deg, #e0f7fa 0%, #fff 100%);
+        padding: 60px 0 40px 0;
+        text-align: center;
+      }
+      .about-hero h1 {
+        font-size: 3em;
+        color: #2d7a5f;
+        margin-bottom: 16px;
+        font-family: 'Bungee Spice', cursive, sans-serif;
+        letter-spacing: 1px;
+      }
+      .about-hero p {
+        font-size: 1.35em;
+        color: #444;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      .about-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 48px;
+        padding: 56px 0 32px 0;
+        background: #f8f9fa;
+      }
+      .about-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px #5c9d7e18;
+        padding: 38px 32px 32px 32px;
+        max-width: 340px;
+        min-width: 260px;
+        text-align: center;
+        transition: box-shadow 0.2s, transform 0.2s;
+        position: relative;
+      }
+      .about-card:hover {
+        box-shadow: 0 8px 32px #5c9d7e33;
+        transform: translateY(-6px) scale(1.03);
+      }
+      .about-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: 3px solid #e0f7fa;
+        background: #f8f9fa;
+      }
+      .about-card h3 {
+        color: #2d7a5f;
+        font-size: 1.35em;
+        margin-bottom: 12px;
+        font-weight: bold;
+      }
+      .about-card p {
+        color: #666;
+        font-size: 1.08em;
+        line-height: 1.5;
+      }
+      .about-values {
+        background: #fff;
+        padding: 48px 0 32px 0;
+        text-align: center;
+      }
+      .about-values h2 {
+        color: #2d7a5f;
+        font-size: 2.2em;
+        margin-bottom: 24px;
+        font-family: 'Bungee Spice', cursive, sans-serif;
+      }
+      .about-values-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 36px;
+      }
+      .about-value-item {
+        background: linear-gradient(90deg, #e0f7fa 0%, #fff 100%);
+        border-radius: 12px;
+        padding: 28px 32px;
+        min-width: 220px;
+        max-width: 340px;
+        color: #2d7a5f;
+        font-size: 1.13em;
+        font-weight: 500;
+        box-shadow: 0 2px 10px #5c9d7e11;
+        border: 1px solid #e0f7fa;
+      }
+      .about-team {
+        background: #f8f9fa;
+        padding: 48px 0 32px 0;
+        text-align: center;
+      }
+      .about-team h2 {
+        color: #2d7a5f;
+        font-size: 2em;
+        margin-bottom: 24px;
+        font-family: 'Bungee Spice', cursive, sans-serif;
+      }
+      .team-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 36px;
+      }
+      .team-member {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px #5c9d7e18;
+        padding: 24px 20px 18px 20px;
+        max-width: 220px;
+        min-width: 180px;
+        text-align: center;
+        transition: box-shadow 0.2s, transform 0.2s;
+      }
+      .team-member:hover {
+        box-shadow: 0 8px 32px #5c9d7e33;
+        transform: translateY(-4px) scale(1.04);
+      }
+      .team-member img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 12px;
+        border: 2px solid #e0f7fa;
+      }
+      .team-member h4 {
+        color: #2d7a5f;
+        font-size: 1.1em;
+        margin-bottom: 6px;
+        font-weight: bold;
+      }
+      .team-member p {
+        color: #666;
+        font-size: 0.98em;
+        margin-bottom: 0;
+      }
+      @media (max-width: 900px) {
+        .about-section, .about-values-list, .team-list { flex-direction: column; align-items: center; }
+      }
+    </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
-<div id="body">
-  <div id="content">
-    <div class="content">
-      <div class="about">
-        <h2>ABOUT US</h2>
-        <ul>
-          <li>
-            <h2><a href="#">We Have Free Templates for Everyone</a></h2>
-            <p> Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What's more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the Terms of Use. You can even remove all our links if you want to. </p>
-          </li>
-          <li>
-            <h2><a href="#">We Have More Templates for You</a></h2>
-            <p> Looking for more templates? Just browse through all our Free Website Templates and find what you're looking for. But if you don't find any website template you can use, you can try our Free Web Design service and tell us all about it. Maybe you're looking for something different, something special. And we love the challenge of doing something different and something special. </p>
-          </li>
-          <li>
-            <h2><a href="#">Be Part of Our Community</a></h2>
-            <p> If you're experiencing issues and concerns about this website template, join the discussion on our forum and meet other people in the community who share the same interests with you. </p>
-          </li>
-          <li>
-            <h2><a href="#">Template details</a></h2>
-            <p> <span>Version 19</span> Website Template details, discussion and updates for this Petshop Template. Website Template design by Free Website Templates. Please feel free to remove some or all the text and links of this page and replace it with your own About content. </p>
-          </li>
-        </ul>
+    <div id="body">
+      <div class="about-hero">
+        <h1>About PetGuide</h1>
+        <p>PetGuide is your trusted companion in caring for your beloved pets. We are passionate about providing the best products, expert advice, and a loving community for all pet lovers. Our mission is to make every pet's life healthier, happier, and more joyful.</p>
       </div>
-    </div>
-    <div id="sidebar">
-      <div class="featured">
-        <h2>Featured Topic</h2>
-        <ul>
-          <li> <a href="#"><img src="images/puppy2.jpg" width="115" height="155" alt=""></a>
-            <h2><a href="#">What they need</a></h2>
-            <p> Mirum est notare quam littera gothica, quam nunc putamus parum clara m, ant epo suerit li tterar. <a class="more" href="#">read more</a> </p>
-          </li>
-          <li> <a href="#"><img src="images/bird2.jpg" width="115" height="155" alt=""></a>
-            <h2><a href="#">Fun birds</a></h2>
-            <p> Mirum est notare quam littera gothica, quam nunc putamus parum clara m, ant epo suerit li tterar. <a class="more" href="#">read more</a> </p>
-          </li>
-          <li class="last"> <a href="#"><img src="images/cat2.jpg" width="115" height="155" alt=""></a>
-            <h2><a href="#">Something good</a></h2>
-            <p> Mirum est notare quam littera gothica, quam nunc putamus parum clara m, ant epo suerit li tterar. <a class="more" href="#">read more</a> </p>
-          </li>
-        </ul>
+      <div class="about-section">
+        <div class="about-card">
+          <img src="images/friendly-pets.jpg" alt="Friendly Service">
+          <h3>Friendly Service</h3>
+          <p>Our team is dedicated to helping you find the perfect products and solutions for your pets, with a smile and expert guidance.</p>
+        </div>
+        <div class="about-card">
+          <img src="images/healthy-dog.jpg" alt="Health & Wellness">
+          <h3>Health & Wellness</h3>
+          <p>We offer a curated selection of healthy food, supplements, and care products to keep your pets in top shape.</p>
+        </div>
+        <div class="about-card">
+          <img src="images/pet-lover.jpg" alt="Community">
+          <h3>Pet Lovers Community</h3>
+          <p>Join our community to share experiences, get advice, and connect with other pet owners who care as much as you do.</p>
+        </div>
+        <div class="about-card">
+          <img src="images/pet-grooming.jpg" alt="Grooming & Care">
+          <h3>Grooming & Care</h3>
+          <p>From grooming essentials to fun accessories, we help your pets look and feel their best every day.</p>
+        </div>
       </div>
-      <div class="search">
-        <input type="text" name="s" value="Find">
-        <button>&nbsp;</button>
-        <label for="articles">
-          <input type="radio" id="articles">
-          Articles</label>
-        <label for="products">
-          <input type="radio" id="products" checked>
-          PetMart Products</label>
+      <div class="about-values">
+        <h2>Our Core Values</h2>
+        <div class="about-values-list">
+          <div class="about-value-item">Love and respect for all animals</div>
+          <div class="about-value-item">Quality and safety in every product</div>
+          <div class="about-value-item">Expertise and continuous learning</div>
+          <div class="about-value-item">Building a supportive pet community</div>
+          <div class="about-value-item">Sustainability and responsibility</div>
+        </div>
       </div>
-      <div class="section">
-        <ul class="navigation">
-          <li class="active"><a href="#">Shopping Guides</a></li>
-          <li><a href="#">Discounted Items</a></li>
-        </ul>
-        <div class="aside">
-          <div>
-            <div>
-              <ul>
-                <li><a href="#">Pet Accesories </a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Bath Essentials</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Food</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Vitamins</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Needs</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Toy and Treats</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Supplies</a> <a class="more" href="#">see all</a></li>
-                <li><a href="#">Pet Emergency Kit</a> <a class="more" href="#">see all</a></li>
-              </ul>
-            </div>
+      <div class="about-team">
+        <h2>Meet Our Team</h2>
+        <div class="team-list">
+          <div class="team-member">
+            <img src="images/pet-lover2.jpg" alt="Anna Nguyen">
+            <h4>Ngoc Khanh</h4>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="team-member">
+            <img src="images/puppy2.jpg" alt="David Tran">
+            <h4>Huu Thang</h4>
+            <p>Veterinary Advisor</p>
+          </div>
+          <div class="team-member">
+            <img src="images/cat2.jpg" alt="Linh Le">
+            <h4>Tuan Quang</h4>
+            <p>Product Manager</p>
+          </div>
+          <div class="team-member">
+            <img src="images/bird2.jpg" alt="Minh Pham">
+            <h4>Nam xoan</h4>
+            <p>Customer Support</p>
+          </div>
+          <div class="team-member">
+            <img src="images/bird2.jpg" alt="Thuc Tran">
+            <h4>Thuc Tran</h4>
+            <p>Customer Support</p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="featured">
-    <ul>
-      <li><a href="#"><img src="images/organic-and-chemical-free.jpg" width="300" height="90" alt=""></a></li>
-      <li><a href="#"><img src="images/good-food.jpg" width="300" height="90" alt=""></a></li>
-      <li class="last"><a href="#"><img src="images/pet-grooming.jpg" width="300" height="90" alt=""></a></li>
-    </ul>
-  </div>
-</div>
-<div id="footer">
-  <div class="section">
-    <ul>
-      <li> <img src="images/friendly-pets.jpg" width="240" height="186" alt="">
-        <h2><a href="#">Friendly Pets</a></h2>
-        <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonummy nib. <a class="more" href="#">Read More</a> </p>
-      </li>
-      <li> <img src="images/pet-lover2.jpg" width="240" height="186" alt="">
-        <h2><a href="#">How dangerous are they</a></h2>
-        <p> Lorem ipsum dolor sit amet, cons ectetuer adepis cing, sed diam euis. <a class="more" href="#">Read More</a> </p>
-      </li>
-      <li> <img src="images/healthy-dog.jpg" width="240" height="186" alt="">
-        <h2><a href="#">Keep them healthy</a></h2>
-        <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonu mmy. <a class="more" href="#">Read More</a> </p>
-      </li>
-      <li>
-        <h2><a href="#">Love...love...love...pets</a></h2>
-        <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diameusim. <a class="more" href="#">Read More</a> </p>
-        <img src="images/pet-lover.jpg" width="240" height="186" alt=""> </li>
-    </ul>
-  </div>
-  <div id="footnote">
-    <div class="section">Copyright &copy; 2012 <a href="#">Company Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></div>
-  </div>
-</div>
+      <?php include 'footer.php'; ?>
 </body>
 </html>

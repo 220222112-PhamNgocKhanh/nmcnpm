@@ -17,8 +17,8 @@
 
     <div class="blog-container">
         <div class="blog-header">
-            <h1>Blog Thú Cưng</h1>
-            <p>Khám phá những kiến thức thú vị về chăm sóc thú cưng</p>
+            <h1>Pet Blog</h1>
+            <p>Discover interesting knowledge about pet care</p>
         </div>
 
         <div id="blogGrid" class="blog-grid">
@@ -26,7 +26,7 @@
         </div>
 
         <div id="loading" class="loading" style="display: none;">
-            <i class="fas fa-spinner fa-spin"></i> Đang tải bài viết...
+            <i class="fas fa-spinner fa-spin"></i> Loading posts...
         </div>
 
         <div id="error" class="error-message" style="display: none;">
@@ -36,14 +36,16 @@
 
         <div id="pagination" class="pagination" style="display: none;">
             <button id="prevPage" class="pagination-btn" disabled>
-                <i class="fas fa-chevron-left"></i> Trang trước
+                <i class="fas fa-chevron-left"></i> Previous
             </button>
-            <span id="pageInfo" class="page-info">Trang 1</span>
+            <span id="pageInfo" class="page-info">Page 1</span>
             <button id="nextPage" class="pagination-btn">
-                Trang sau <i class="fas fa-chevron-right"></i>
+                Next <i class="fas fa-chevron-right"></i>
             </button>
         </div>
+
     </div>
+    <?php include 'footer.php'; ?>
 
     <script>
     let currentPage = 1;
@@ -60,7 +62,7 @@
     function formatDate(dateString) {
         if (!dateString) return '';
         const date = new Date(dateString);
-        return date.toLocaleDateString('vi-VN', {
+        return date.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
@@ -87,7 +89,7 @@
         pagination.style.display = 'flex';
         prevPageBtn.disabled = currentPage === 1;
         nextPageBtn.disabled = currentPage === totalPages;
-        pageInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
+        pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
     }
 
     function createBlogCard(post) {
@@ -114,7 +116,7 @@
                             ${date}
                         </span>
                         <a href="blog-detail.php?id=${postId}" class="read-more">
-                            Đọc thêm
+                            Read more
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -151,7 +153,7 @@
         try {
             const response = await fetch('http://localhost:3000/blog-service/posts');
             if (!response.ok) {
-                throw new Error('Không thể tải danh sách bài viết');
+                throw new Error('Could not load post list');
             }
 
             const posts = await response.json();
@@ -159,26 +161,26 @@
             totalPosts = posts.length;
             
             if (posts.length === 0) {
-                showError('Chưa có bài viết nào.');
+                showError('No posts available.');
                 return;
             }
 
-            // Tính toán phân trang
+            // Calculate pagination
             const totalPages = Math.ceil(posts.length / postsPerPage);
             const startIndex = (currentPage - 1) * postsPerPage;
             const endIndex = startIndex + postsPerPage;
             const currentPosts = posts.slice(startIndex, endIndex);
 
-            // Cập nhật phân trang
+            // Update pagination
             updatePagination(totalPages);
 
-            // Hiển thị bài viết
+            // Display posts
             currentPosts.forEach(post => {
                 blogGrid.innerHTML += createBlogCard(post);
             });
         } catch (error) {
             showLoading(false);
-            showError('Có lỗi xảy ra khi tải bài viết. Vui lòng thử lại sau.');
+            showError('An error occurred while loading posts. Please try again later.');
             console.error('Error loading blog posts:', error);
         }
     }

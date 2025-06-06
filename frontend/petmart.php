@@ -158,43 +158,7 @@
     <script src="../backend/product/product_detail.js"></script>
     <script src="../backend/product/search_product.js"></script>
 
-    <div class="featured">
-      <ul>
-        <li><a href="#"><img src="images/organic-and-chemical-free.jpg" width="300" height="90" alt=""></a></li>
-        <li><a href="#"><img src="images/good-food.jpg" width="300" height="90" alt=""></a></li>
-        <li class="last"><a href="#"><img src="images/pet-grooming.jpg" width="300" height="90" alt=""></a></li>
-      </ul>
-    </div>
-    <div id="footer">
-      <div class="section">
-        <ul>
-          <li> <img src="images/friendly-pets.jpg" width="240" height="186" alt="">
-            <h2><a href="#">Friendly Pets</a></h2>
-            <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonummy nib. <a class="more"
-                href="#">Read More</a> </p>
-          </li>
-          <li> <img src="images/pet-lover2.jpg" width="240" height="186" alt="">
-            <h2><a href="#">How dangerous are they</a></h2>
-            <p> Lorem ipsum dolor sit amet, cons ectetuer adepis cing, sed diam euis. <a class="more" href="#">Read
-                More</a> </p>
-          </li>
-          <li> <img src="images/healthy-dog.jpg" width="240" height="186" alt="">
-            <h2><a href="#">Keep them healthy</a></h2>
-            <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonu mmy. <a class="more"
-                href="#">Read More</a> </p>
-          </li>
-          <li>
-            <h2><a href="#">Love...love...love...pets</a></h2>
-            <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diameusim. <a class="more" href="#">Read
-                More</a> </p>
-            <img src="images/pet-lover.jpg" width="240" height="186" alt="">
-          </li>
-        </ul>
-      </div>
-      <div id="footnote">
-
-      </div>
-    </div>
+    <?php include 'footer.php'; ?>
 
     <!-- Modal -->
 <div id="productModal" class="modal">

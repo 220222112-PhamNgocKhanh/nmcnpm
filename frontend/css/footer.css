@@ -83,6 +83,7 @@
     transition: all 0.3s;
     position: relative;
     padding-left: 15px;
+    display: inline-block;
 }
 
 .footer-links a::before {
@@ -93,9 +94,17 @@
     color: #ff9900;
 }
 
+.footer-links a:visited {
+    color: #ccc;
+}
+
+.footer-links a:active {
+    color: #ccc;
+}
+
 .footer-links a:hover {
-    color: #ff9900;
-    padding-left: 18px;
+    color: #ccc;
+    padding-left: 15px;
 }
 
 .contact-info {

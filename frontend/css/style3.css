@@ -114,8 +114,8 @@
 	overflow:hidden;
 }
 #body div#content .content {
-	float:left;
-	width:640px;
+	float:center;
+	width:800;
 	margin-right:20px;
 	background-image:none;
 	height:auto;

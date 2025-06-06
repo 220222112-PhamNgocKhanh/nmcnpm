@@ -4,7 +4,7 @@
 <head>
   <title>My Account | PetGuide</title>
   <meta charset="iso-8859-1">
-  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/style3.css" rel="stylesheet" type="text/css">
   <link href="css/header.css" rel="stylesheet" type="text/css">
   <!--[if IE 6]><link href="css/ie6.css" rel="stylesheet" type="text/css"><![endif]-->
   <!--[if IE 7]><link href="css/ie7.css" rel="stylesheet" type="text/css"><![endif]-->
@@ -15,6 +15,7 @@
       border-radius: 5px;
       margin-bottom: 20px;
     }
+    
 
     .account-tabs {
       display: flex;
@@ -275,12 +276,12 @@
                 <button type="button" id="edit-btn" class="btn btn-outline">Edit</button>
               </div>
               <div id="view-mode">
-                <h4>Địa chỉ</h4>
+                <h4>Address</h4>
                 <p id="address-display">Loading address...</p>
               </div>
               <div id="edit-mode" style="display: none;">
                 <div class="form-group">
-                  <label for="edit-address">Địa chỉ</label>
+                  <label for="edit-address">Address</label>
                   <input type="text" id="edit-address" class="form-control">
                 </div>
               </div>
@@ -291,7 +292,7 @@
                 <label for="email">Email</label>
                 <input type="email" id="email" class="form-control" value="">
               </div>
-              <button type="submit" class="btn">Lưu thay đổi</button>
+              <button type="submit" class="btn">Save</button>
             </form>
             <div id="message-box" style="margin-top: 10px;"></div>
           </div>
@@ -300,7 +301,7 @@
             document.addEventListener('DOMContentLoaded', async () => {
               const token = localStorage.getItem('token');
               if (!token) {
-                alert('Bạn chưa đăng nhập!');
+                alert('You are not logged in!');
                 window.location.href = 'login.php';
                 return;
               }
@@ -332,37 +333,39 @@
                   });
 
                   const user = await res.json();
-                  if (!res.ok) throw new Error(user.message || 'Không thể lấy thông tin');
+                  if (!res.ok) throw new Error(user.message || 'Unable to get information');
 
                   currentUser = user;
 
-                  // Cập nhật giao diện
+                  // Update interface
                   document.querySelector('.profile-info h3').textContent = user.username;
-                  document.getElementById('address-display').textContent = user.address || 'Chưa có địa chỉ';
+                  document.getElementById('address-display').textContent = user.address || 'No address';
                   document.getElementById('email').value = user.email || '';
                   editAddress.value = user.address || '';
 
                 } catch (err) {
-                  console.error('Lỗi:', err);
-                  showMessage('Không thể tải thông tin người dùng', true);
+                  console.error('Error:', err);
+                  showMessage('Unable to load user information', true);
                 }
               }
-              // Xử lý nút Edit
+              // Handle Edit button
               editBtn.addEventListener('click', () => {
                 if (editBtn.textContent === 'Edit') {
                   viewMode.style.display = 'none';
                   editMode.style.display = 'block';
                   editBtn.textContent = 'Cancel';
-                  editBtn.classList.add('btn-small', 'btn-cancel'); // Thêm class mới
+                  editBtn.classList.add('btn-small', 'btn-cancel');
+                  editBtn.classList.remove('btn-outline');
                 } else {
                   viewMode.style.display = 'block';
                   editMode.style.display = 'none';
                   editBtn.textContent = 'Edit';
-
+                  editBtn.classList.remove('btn-small', 'btn-cancel');
+                  editBtn.classList.add('btn-outline');
                 }
               });
 
-              // Xử lý form cập nhật
+              // Handle form update
               document.getElementById('profile-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
 
@@ -384,7 +387,7 @@
                   const result = await updateRes.json();
 
                   if (updateRes.status === 401) {
-                    showMessage('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại', true);
+                    showMessage('Session expired. Please login again', true);
                     localStorage.removeItem('token');
                     setTimeout(() => {
                       window.location.href = 'login.php';
@@ -393,29 +396,29 @@
                   }
 
                   if (updateRes.ok) {
-                    showMessage('Cập nhật thông tin thành công');
-                    // Chuyển về chế độ xem
+                    showMessage('Information updated successfully');
+                    // Switch to view mode
                     viewMode.style.display = 'block';
                     editMode.style.display = 'none';
                     editBtn.textContent = 'Edit';
                     editBtn.classList.remove('btn-small', 'btn-cancel');
-                    // Tải lại thông tin mới
+                    // Reload new information
                     await loadUserInfo();
                   } else {
-                    // Xử lý các loại lỗi cụ thể
+                    // Handle specific errors
                     if (result.code === 'ER_DUP_ENTRY') {
-                      showMessage('Email này đã được sử dụng bởi tài khoản khác', true);
+                      showMessage('This email is already used by another account', true);
                     } else {
-                      showMessage(result.message || 'Cập nhật thất bại', true);
+                      showMessage(result.message || 'Update failed', true);
                     }
                   }
                 } catch (err) {
-                  console.error('Lỗi:', err);
-                  showMessage('Lỗi kết nối, vui lòng thử lại sau', true);
+                  console.error('Error:', err);
+                  showMessage('Connection error, please try again later', true);
                 }
               });
 
-              // Tải thông tin người dùng khi trang được load
+              // Load user information when page loads
               await loadUserInfo();
             });
           </script>
@@ -457,21 +460,21 @@
                   messageBox.textContent = message;
                 };
 
-                // Kiểm tra mật khẩu mới
+                // Check new password
                 if (!newPassword) {
-                  showMessage('Vui lòng nhập mật khẩu mới', true);
+                  showMessage('Please enter new password', true);
                   return;
                 }
 
-                // Kiểm tra xác nhận mật khẩu
+                // Check password confirmation
                 if (newPassword !== confirmPassword) {
-                  showMessage('Mật khẩu mới không trùng khớp', true);
+                  showMessage('New passwords do not match', true);
                   return;
                 }
 
                 const token = localStorage.getItem('token');
                 if (!token) {
-                  showMessage('Bạn chưa đăng nhập! Vui lòng đăng nhập lại.', true);
+                  showMessage('You are not logged in! Please login again.', true);
                   setTimeout(() => {
                     window.location.href = 'login.php';
                   }, 2000);
@@ -493,15 +496,15 @@
 
                   const result = await response.json();
 
-                  // Kiểm tra message trước
-                  if (result.message.includes('Mật khẩu hiện tại không đúng')) {
-                    showMessage('Mật khẩu hiện tại không đúng', true);
+                  // Check message first
+                  if (result.message.includes('Current password is incorrect')) {
+                    showMessage('Current password is incorrect', true);
                     return;
                   }
 
-                  // Sau đó mới kiểm tra status 401 cho các trường hợp khác
+                  // Then check 401 status for other cases
                   if (response.status === 401) {
-                    showMessage('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.', true);
+                    showMessage('Session expired. Please login again.', true);
                     localStorage.removeItem('token');
                     setTimeout(() => {
                       window.location.href = 'login.php';
@@ -510,19 +513,19 @@
                   }
 
                   if (response.ok) {
-                    showMessage('Đổi mật khẩu thành công! Vui lòng đăng nhập lại.');
+                    showMessage('Password changed successfully! Please login again.');
                     document.getElementById('change-password-form').reset();
                     setTimeout(() => {
                       localStorage.removeItem('token');
                       window.location.href = 'login.php';
                     }, 2000);
                   } else {
-                    showMessage(result.message || 'Đổi mật khẩu thất bại', true);
+                    showMessage(result.message || 'Password change failed', true);
                   }
 
                 } catch (error) {
-                  console.error('Lỗi:', error);
-                  showMessage('Lỗi kết nối. Vui lòng kiểm tra lại kết nối mạng và thử lại.', true);
+                  console.error('Error:', error);
+                  showMessage('Connection error. Please check your network connection and try again.', true);
                 }
               });
             </script>
@@ -538,6 +541,10 @@
     
 
   
+
+  </div>
+
+  <?php include 'footer.php'; ?>
 
   <script>
     // JavaScript để xử lý chức năng tab
@@ -559,7 +566,6 @@
           document.getElementById(tabName + '-tab').classList.add('active');
         });
       });
-
     });
   </script>
 </body>

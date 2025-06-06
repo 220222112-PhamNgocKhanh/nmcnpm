@@ -9,6 +9,58 @@
   <link href="css/order.css" rel="stylesheet" type="text/css">
   <!--[if IE 6]><link href="css/ie6.css" rel="stylesheet" type="text/css"><![endif]-->
   <!--[if IE 7]><link href="css/ie7.css" rel="stylesheet" type="text/css"><![endif]-->
+  <style>
+    .order-tabs {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-tabs::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .order-tabs::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    .order-tabs::-webkit-scrollbar-thumb {
+      background: #5c9d7e;
+      border-radius: 4px;
+    }
+
+    .order-tab {
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      border-radius: 20px;
+      background: #f8f9fa;
+      color: #666;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+      flex-shrink: 0;
+    }
+
+    .order-tab:hover {
+      background: #e9ecef;
+    }
+
+    .order-tab.active {
+      background: #5c9d7e;
+      color: white;
+      border-color: #5c9d7e;
+    }
+
+    .order-tab i {
+      margin-right: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,12 +73,12 @@
 
         <div class="orders-container">
           <div class="order-tabs">
-            <div class="order-tab active">All Orders</div>
-            <div class="order-tab">Pending</div>
-            <div class="order-tab">Confirmed</div>
-            <div class="order-tab">Shipping</div>
-            <div class="order-tab">Delivered</div>
-            <div class="order-tab">Canceled</div>
+            <div class="order-tab active"><i class="fa fa-list"></i>All Orders</div>
+            <div class="order-tab"><i class="fa fa-hourglass-half"></i>Pending</div>
+            <div class="order-tab"><i class="fa fa-check-circle"></i>Confirmed</div>
+            <div class="order-tab"><i class="fa fa-truck"></i>Shipping</div>
+            <div class="order-tab"><i class="fa fa-box-open"></i>Delivered</div>
+            <div class="order-tab"><i class="fa fa-times-circle"></i>Canceled</div>
           </div>
 
           <!-- container rỗng để JS đổ đơn hàng vào -->
@@ -84,46 +136,8 @@
       </div>
     </div>
 
-    <div class="featured">
-      <ul>
-        <li><a href="#"><img src="images/organic-and-chemical-free.jpg" width="300" height="90" alt=""></a></li>
-        <li><a href="#"><img src="images/good-food.jpg" width="300" height="90" alt=""></a></li>
-        <li class="last"><a href="#"><img src="images/pet-grooming.jpg" width="300" height="90" alt=""></a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="footer">
-    <div class="section">
-      <ul>
-        <li> <img src="images/friendly-pets.jpg" width="240" height="186" alt="">
-          <h2><a href="#">Friendly Pets</a></h2>
-          <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonummy nib. <a class="more"
-              href="#">Read More</a> </p>
-        </li>
-        <li> <img src="images/pet-lover2.jpg" width="240" height="186" alt="">
-          <h2><a href="#">How dangerous are they</a></h2>
-          <p> Lorem ipsum dolor sit amet, cons ectetuer adepis cing, sed diam euis. <a class="more"
-              href="#">Read More</a> </p>
-        </li>
-        <li> <img src="images/healthy-dog.jpg" width="240" height="186" alt="">
-          <h2><a href="#">Keep them healthy</a></h2>
-          <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonu mmy. <a class="more"
-              href="#">Read More</a> </p>
-        </li>
-        <li>
-          <h2><a href="#">Love...love...love...pets</a></h2>
-          <p> Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diameusim. <a class="more"
-              href="#">Read More</a> </p>
-          <img src="images/pet-lover.jpg" width="240" height="186" alt="">
-        </li>
-      </ul>
-    </div>
-    <div id="footnote">
-      <div class="section">Copyright &copy; 2012 <a href="#">Company Name</a> All rights reserved | Website Template By
-        <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></div>
-    </div>
-  </div>
+    <?php include 'footer.php'; ?>
+  
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

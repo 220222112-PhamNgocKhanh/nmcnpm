@@ -12,7 +12,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <li><a href="petmart.php" class="<?php echo $current_page == 'petmart.php' ? 'active' : ''; ?>">PetMart</a></li>
         <li><a href="about.php" class="<?php echo $current_page == 'about.php' ? 'active' : ''; ?>">About us</a></li>
         <li><a href="blog.php" class="<?php echo $current_page == 'blog.php' ? 'active' : ''; ?>">Blog</a></li>
-        <li><a href="contact.php" class="<?php echo $current_page == 'contact.php' ? 'active' : ''; ?>">Contact us</a></li>
         <li id="userSection"></li>
     </ul>
 </div>
@@ -22,6 +21,29 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <!-- Thêm JavaScript -->
 <script>
+    // Header scroll behavior
+    let lastScrollTop = 0;
+    const header = document.getElementById('header');
+    const scrollThreshold = 50; // Minimum scroll amount before hiding header
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Only trigger if we've scrolled more than the threshold
+        if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                // Scrolling down & past header height
+                header.classList.remove('header-visible');
+                header.classList.add('header-hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('header-hidden');
+                header.classList.add('header-visible');
+            }
+            lastScrollTop = currentScroll;
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', async () => {
         const userSection = document.getElementById('userSection');
         const token = localStorage.getItem('token');

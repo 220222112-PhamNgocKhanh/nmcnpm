@@ -240,7 +240,7 @@
                             <td>
                                 <div class="stat-category">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span>Đơn hàng mới</span>
+                                    <span>Đơn hàng</span>
                                 </div>
                             </td>
                             <td id="newOrdersTotal">0</td>

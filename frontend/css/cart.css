@@ -11,6 +11,14 @@
   border-collapse: collapse;
   margin-bottom: 20px;
 }
+/* #body div#content .content {
+	float:left;
+	width:800;
+	margin-right:20px;
+	background-image:none;
+	height:auto;
+	overflow:hidden;
+} */
 
 .cart-table th {
   background-color: #5c9d7e;

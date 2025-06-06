@@ -3,11 +3,11 @@ function searchProduct(keyword) {
   fetch(`http://localhost:3000/product-service/products/searchbyname/${keyword}`)
     .then(response => response.json())
     .then(data => {
-      renderProducts(data.products, `Kết quả tìm kiếm cho: "${keyword}"`);
+      renderProducts(data.products, `Search results for: "${keyword}"`);
     })
     .catch(error => {
-      console.error('Lỗi tìm kiếm:', error);
-      alert('Không thể tìm thấy sản phẩm!');
+      console.error('Search error:', error);
+      alert('Could not find products!');
     });
 }
 
@@ -16,10 +16,10 @@ function showProducts() {
   fetch('http://localhost:3000/product-service/products')
     .then(res => res.json())
     .then(data => {
-      renderProducts(data.products, 'Danh sách sản phẩm');
+      renderProducts(data.products, 'Product List');
     })
     .catch(err => {
-      console.error('Không thể tải Danh sách sản phẩm:', err);
+      console.error('Could not load Product List:', err);
     });
 }
 
@@ -27,11 +27,11 @@ function searchInCategory(keyword, category) {
   fetch(`http://localhost:3000/product-service/products/search-category/${category}/${keyword}`)
     .then(res => res.json())
     .then(data => {
-      renderProducts(data.products, `Kết quả tìm kiếm cho: "${keyword}" trong danh mục: "${category}"`);
+      renderProducts(data.products, `Search results for: "${keyword}" in category: "${category}"`);
     })
     .catch(error => {
-      console.error('Lỗi tìm kiếm trong danh mục:', error);
-      alert('Không thể tìm thấy sản phẩm trong danh mục này!');
+      console.error('Error searching in category:', error);
+      alert('Could not find products in this category!');
     });
 }
 
@@ -45,8 +45,20 @@ function handleSearch() {
   console.log('Selected category:', selectedCategory);
   const keyword = searchInput.value.trim();
   console.log('Keyword:', keyword);
-  const allCategoryLinks = document.querySelectorAll('.category-list li a');
+  const allCategoryLinks = document.querySelectorAll('.category-list li a, .product-categories ul li ul li a');
   allCategoryLinks.forEach(link => link.classList.remove('category-active'));
+
+  // Thêm active cho danh mục phù hợp
+  allCategoryLinks.forEach(categoryLink => {
+    const linkCategory = categoryLink.getAttribute('data-category');
+    if (linkCategory && (
+        linkCategory.toLowerCase() === selectedCategory.toLowerCase() || 
+        linkCategory.includes(selectedCategory) || 
+        selectedCategory.includes(linkCategory)
+    )) {
+      categoryLink.classList.add('category-active');
+    }
+  });
   
   // Nếu có từ khóa tìm kiếm
   if (keyword && selectedCategory == 'all') {
@@ -290,5 +302,3 @@ window.addEventListener('DOMContentLoaded', async () => {
     localStorage.removeItem('searchKeyword');
   }
 });
-
-

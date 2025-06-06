@@ -43,21 +43,21 @@
 
 <body>
     <div class="checkout-container">
-        <h2 class="mb-4">Thông Tin Thanh Toán</h2>
+        <h2 class="mb-4">Payment Information</h2>
 
         <div class="user-info">
-            <h4 id="welcomeMessage">Xin chào, </h4>
+            <h4 id="welcomeMessage">Welcome, </h4>
         </div>
 
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>Danh Sách Sản Phẩm</h4>
+                        <h4>Products</h4>
                     </div>
                     <div class="card-body">
                         <div id="cartItemsList" class="cart-items">
-                            <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
+                            <!-- Product list will be displayed here -->
                         </div>
                     </div>
                 </div>
@@ -65,11 +65,11 @@
                 <form id="checkoutForm">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h4>Thông Tin Giao Hàng</h4>
+                            <h4>Shipping Information</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label for="fullName" class="form-label">Họ và tên</label>
+                                <label for="fullName" class="form-label">Full Name</label>
                                 <input type="text" class="form-control" id="fullName" disabled>
                             </div>
                             <div class="mb-3">
@@ -77,11 +77,21 @@
                                 <input type="email" class="form-control" id="email" disabled>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Số điện thoại</label>
-                                <input type="tel" class="form-control" id="phone" required>
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" 
+                                       class="form-control" 
+                                       id="phone" 
+                                       pattern="[0-9]{10}" 
+                                       maxlength="10" 
+                                       minlength="10"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                       required>
+                                <div class="invalid-feedback">
+                                    Phone number must be exactly 10 digits
+                                </div>
                             </div>
                             <div class="mb-3">
-                                <label for="address" class="form-label">Địa chỉ giao hàng</label>
+                                <label for="address" class="form-label">Shipping Address</label>
                                 <textarea class="form-control" id="address" rows="3" required></textarea>
                             </div>
                         </div>
@@ -91,34 +101,34 @@
 
             <div class="col-md-4">
                 <div class="order-summary">
-                    <h4>Tổng Đơn Hàng</h4>
+                    <h4>Order Summary</h4>
                     <div id="cartItems">
-                        <!-- Tổng tiền sẽ được hiển thị ở đây -->
+                        <!-- Order total will be displayed here -->
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-2">
-                        <span>Tạm tính:</span>
+                        <span>Subtotal:</span>
                         <span id="subtotal">0$</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
-                        <span>Phí vận chuyển:</span>
+                        <span>Shipping:</span>
                         <span id="shipping">0$</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-3">
-                        <strong>Tổng cộng:</strong>
+                        <strong>Total:</strong>
                         <strong id="total">0$</strong>
                     </div>
                     <div class="payment-method mb-3">
-                        <h5>Phương thức thanh toán</h5>
+                        <h5>Payment Method</h5>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="cod" checked>
                             <label class="form-check-label" for="cod">
-                                Thanh toán khi nhận hàng (COD)
+                                Cash on Delivery (COD)
                             </label>
                         </div>
                     </div>
-                    <button class="btn btn-primary w-100" onclick="placeOrder()">Đặt Hàng</button>
+                    <button class="btn btn-primary w-100" onclick="placeOrder()">Place Order</button>
                 </div>
             </div>
         </div>
@@ -165,7 +175,7 @@
                 }
 
                 const userData = await response.json();
-                document.getElementById('welcomeMessage').textContent = `Xin chào, ${userData.username}`;
+                document.getElementById('welcomeMessage').textContent = `Welcome, ${userData.username}`;
                 document.getElementById('email').value = userData.email;
                 document.getElementById('fullName').value = userData.username;
             } catch (error) {
@@ -240,7 +250,7 @@
                 <div class="cart-item">
                     <div class="d-flex justify-content-between align-items-center">
                         <span>${item.name}</span>
-                        <span class="text-muted">Số lượng: ${item.quantity}</span>
+                        <span class="text-muted">Quantity: ${item.quantity}</span>
                     </div>
                 </div>
             `).join('');
@@ -252,7 +262,7 @@
             cartItemsContainer.innerHTML = items.map(item => `
                 <div class="d-flex justify-content-between mb-2">
                     <span>${item.name} x ${item.quantity}</span>
-                    <span>${(item.price * item.quantity).toLocaleString('vi-VN')}$</span>
+                    <strong>${(item.price * item.quantity).toLocaleString('vi-VN')}$</strong>
                 </div>
             `).join('');
         }
@@ -263,9 +273,9 @@
             const shipping = 5; 
             const total = subtotal + shipping;
 
-            document.getElementById('subtotal').textContent = `${subtotal.toLocaleString('vi-VN')}$`;
-            document.getElementById('shipping').textContent = `${shipping.toLocaleString('vi-VN')}$`;
-            document.getElementById('total').textContent = `${total.toLocaleString('vi-VN')}$`;
+            document.getElementById('subtotal').innerHTML = `<strong>${subtotal.toLocaleString('vi-VN')}$</strong>`;
+            document.getElementById('shipping').innerHTML = `<strong>${shipping.toLocaleString('vi-VN')}$</strong>`;
+            document.getElementById('total').innerHTML = `<strong style="color: #dc3545; font-size: 1.2em;">${total.toLocaleString('vi-VN')}$</strong>`;
         }
 
         // Đặt hàng
@@ -276,15 +286,22 @@
                 return;
             }
 
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput.value.length !== 10) {
+                phoneInput.classList.add('is-invalid');
+                return;
+            }
+            phoneInput.classList.remove('is-invalid');
+
             const userId = getUserId();
             if (!userId) {
-                alert('Vui lòng đăng nhập để đặt hàng');
+                alert('Please login to place an order');
                 window.location.href = 'login.php';
                 return;
             }
 
             try {
-                // Lấy thông tin giỏ hàng
+                // Get cart information
                 const cartResponse = await fetch(`http://localhost:3000/cart-service/cart/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${getAuthToken()}`
@@ -292,7 +309,7 @@
                 });
 
                 if (!cartResponse.ok) {
-                    throw new Error('Không thể lấy thông tin giỏ hàng');
+                    throw new Error('Could not get cart information');
                 }
 
                 const cartItems = await cartResponse.json();

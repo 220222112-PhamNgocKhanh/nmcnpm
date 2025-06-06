@@ -179,7 +179,6 @@
                         <th>Tài khoản</th>
                         <th>Địa chỉ</th>
                         <th>Email</th>
-                        <th>Mật khẩu</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -253,7 +252,6 @@
                         <span class="email-display">${user.email}</span>
                         <input type="email" class="email-edit" style="display: none;" value="${user.email}">
                     </td>
-                    <td><a class="reset-password" onclick="resetPassword('${user.username}')">Reset</a></td>
                     <td>
                         <button class="edit-btn" onclick="toggleEdit(this, '${user.username}')">
                             <i class="fas fa-edit"></i>
@@ -272,6 +270,7 @@
             // Tạo phân trang
             createPagination(users.length);
         }
+
 
         function createPagination(totalUsers) {
             const totalPages = Math.ceil(totalUsers / customersPerPage);
@@ -431,32 +430,6 @@
             } catch (error) {
                 console.error('Error:', error);
                 showMessage('Lỗi khi xóa người dùng', true);
-            }
-        }
-
-        async function resetPassword(username) {
-            if (!confirm('Bạn có chắc muốn reset mật khẩu cho người dùng này?')) {
-                return;
-            }
-
-            try {
-                const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:3000/user-service/forgot-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        email: email
-                    })
-                });
-
-                const result = await response.json();
-                showMessage(result.message, !response.ok);
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Lỗi khi reset mật khẩu', true);
             }
         }
 

@@ -367,7 +367,16 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Giá</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0" required>
+                    <input type="number" 
+                           id="price" 
+                           name="price" 
+                           min="1" 
+                           step="0.01" 
+                           required 
+                           oninput="validatePrice(this)">
+                    <div class="invalid-feedback">
+                        Giá phải lớn hơn 0
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="quantity">Số lượng</label>
@@ -910,6 +919,17 @@
                 loadProducts();
             }
         });
+
+        function validatePrice(input) {
+            const value = parseFloat(input.value);
+            if (value <= 0) {
+                input.classList.add('is-invalid');
+                input.setCustomValidity('Giá phải lớn hơn 0');
+            } else {
+                input.classList.remove('is-invalid');
+                input.setCustomValidity('');
+            }
+        }
     </script>
 </body>
 
